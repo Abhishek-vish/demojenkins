@@ -1,0 +1,40 @@
+pipeline{
+    agent{
+        label "node"
+    }
+    stages{
+        stage("echo a line"){
+            steps{
+                echo 'MY name is Abhishek'
+            }
+        
+        }
+        stage("run a command"){
+            steps{
+                sh '''pwd
+                ls
+                date
+                cat
+                '''
+            }
+        
+        }
+        stage("input){
+            steps{
+                input 'my name is abhishek'
+            }
+        
+        }
+    }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
